@@ -33,7 +33,6 @@ public class WantToDo {
 		System.out.println();
 		
 		return s;
-		
 	}
 	
 	public void upData( String sql , String adult_PCS, String child_PCS) {
@@ -58,7 +57,6 @@ public class WantToDo {
 		db.setChild_PCS(new BigDecimal(child_PCS));
 		
 		dbs.insertDBTable(db);
-		
 	}	
 	
 	

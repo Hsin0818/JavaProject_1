@@ -55,6 +55,4 @@ public class DBTable {
 	public void setUpDate(Date upDate) {
 		this.upDate = upDate;
 	}
-	
-
 }

@@ -22,11 +22,7 @@ public class Openssh {
 			session = jsch.getSession(user, host, port);
 			session.setConfig("StrictHostKeyChecking", "no");
 			session.connect();
-			//System.out.println(session.getServerVersion());//這裡列印SSH伺服器版本資訊
-			//int assinged_port = 
 			session.setPortForwardingL(lport, rhost, rport);
-			//System.out.println("localhost:" + assinged_port + " -> " + rhost + ":" + rport);//
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,7 +30,6 @@ public class Openssh {
 	
 	public void closeSSH() {
 		session.disconnect();
-		//System.out.println("成功關閉");
 	}
 
 }

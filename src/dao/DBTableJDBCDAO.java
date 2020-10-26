@@ -27,9 +27,7 @@ public class DBTableJDBCDAO implements DBDAO{
 			ds.setMaxIdle(50);//最多可以在pool中發呆的連線數
 			ds.setMaxTotal(50);//最多可能同時保留的連線數
 			dataSource = ds;
-			
 		}
-		
 		return dataSource;
 	}
 
@@ -98,7 +96,6 @@ public class DBTableJDBCDAO implements DBDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	

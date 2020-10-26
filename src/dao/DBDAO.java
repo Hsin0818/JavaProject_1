@@ -9,5 +9,4 @@ public interface DBDAO {
 	void updataDBTable(DBTable DB);
 	
 	void insertDBTable(DBTable DB);
-
 }

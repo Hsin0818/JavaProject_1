@@ -114,8 +114,7 @@ public class MainProject {
 		}else {
 			System.out.println("輸入錯誤，請重新輸入 ");
 			ifaddSql();
-		}
-		
+		}	
 		return con;
 	}
 	
@@ -155,5 +154,4 @@ public class MainProject {
 			ifDownloadData();
 		}
 	}
-	
 }

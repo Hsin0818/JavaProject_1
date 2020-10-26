@@ -40,9 +40,6 @@ public class DBTableCSV {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-    	
-    	//System.out.println("Success Download CSV");
-    	
     }
 	
 	public void insertCSVToDB() {
@@ -74,7 +71,6 @@ public class DBTableCSV {
 					pstmt.clearBatch();
 					System.out.println(cont);
 				}
-				
 			}
 			pstmt.executeBatch();
 			pstmt.clearBatch();
@@ -89,9 +85,5 @@ public class DBTableCSV {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//System.out.println("Success Insert");
-		
 	}
-	
 }
