@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-public class JDBCDAO implements DBDAO{
+public class DBTableJDBCDAO implements DBDAO{
 	
 	private BasicDataSource dataSource;
 	
@@ -35,22 +35,23 @@ public class JDBCDAO implements DBDAO{
 
 
 	@Override
-	public List<DBTable> listDBTable() {
+	public List<DBTable> listDBTable(String sql) {
 		
 		List<DBTable> list = new ArrayList<DBTable>();
 		try (Connection connection = getBasicDataSource().getConnection();
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from Pharmacy");) {
+				ResultSet rs = stmt.executeQuery(sql);) {
 			
 			while ( rs.next() ) {
 				
 				DBTable db = new DBTable();
+				db.setId(rs.getInt("ID"));
 				db.setName(rs.getString("NAME"));
 				db.setAddress(rs.getString("ADDRESS"));
 				db.setPhone(rs.getString("PHONE"));
 				db.setAdult_PCS(rs.getBigDecimal("ADULT_PCS"));
 				db.setChild_PCS(rs.getBigDecimal("CHILD_PCS"));
-				
+				db.setUpDate(rs.getDate("UP_DATE"));
 				list.add(db);
 				
 			}
@@ -66,12 +67,13 @@ public class JDBCDAO implements DBDAO{
 	public void updataDBTable(DBTable db) {
 		
 		try (Connection connection = getBasicDataSource().getConnection();
-				PreparedStatement pstmt = connection.prepareStatement("update Pharmacy set ADULT_PCS = ?, CHILD_PCS = ?, UP_DATE = GETDATE() WHERE ID = ?")
+				PreparedStatement pstmt = connection.prepareStatement("update Pharmacy set ADULT_PCS = ?, CHILD_PCS = ?, UP_DATE = GETDATE() WHERE NAME = ?")
 						){
 			
 			pstmt.setBigDecimal(1, db.getAdult_PCS());
 			pstmt.setBigDecimal(2, db.getChild_PCS());
-			
+			pstmt.setString(3, db.getName());
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 		
@@ -83,7 +85,6 @@ public class JDBCDAO implements DBDAO{
 	
 	@Override
 	public void insertDBTable(DBTable db) {
-		
 		try (Connection connection = getBasicDataSource().getConnection();
 				PreparedStatement pstmt = connection.prepareStatement("Insert into Pharmacy values( ?, ?, ?, ?, ?, GETDATE())")){
 			
@@ -92,9 +93,7 @@ public class JDBCDAO implements DBDAO{
 			pstmt.setString(3, db.getPhone());
 			pstmt.setBigDecimal(4, db.getAdult_PCS());
 			pstmt.setBigDecimal(5, db.getChild_PCS());
-			
 			pstmt.executeUpdate();
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -16,6 +16,9 @@ public class DBTable {
 	public int getId() {
 		return id;
 	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -48,6 +51,9 @@ public class DBTable {
 	}
 	public Date getUpDate() {
 		return upDate;
+	}
+	public void setUpDate(Date upDate) {
+		this.upDate = upDate;
 	}
 	
 
