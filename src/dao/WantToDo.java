@@ -10,7 +10,6 @@ public class WantToDo {
 	private DBTableCSV toCSV = new DBTableCSV();
 	private List<DBTable> selectTables;
 
-	
 	public void getDownloadTable ( String sql, String fileName) {
 		
 		selectTables = dbs.listDBTable(sql);
